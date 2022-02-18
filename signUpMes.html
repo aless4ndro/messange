@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  align-items: center;
+  background: rgb(82, 81, 238);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+form {
+  border-radius: 5px;
+  background: rgb(255, 255, 255);
+  padding: 0 2rem;
+  width: 25rem;
+}
+
+h1 {
+  color: rgb(82, 81, 238);
+  font-size: 1.5rem;
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.input-group {
+  margin-top: 1.5rem;
+}
+
+input[type="text"],
+select {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.input-action {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+button {
+  background: rgb(82, 81, 238);
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+}
+    </style>
+</head>
+
+<body>
+    <form id="register-form">
+        <h1>Inscription</h1>
+        <div class="input-group">
+          <input type="radio" id="female" name="civility">
+          <label for="female">Madame</label>
+    
+          <input type="radio" id="male" name="civility">
+          <label for="male">Monsieur</label>
+        </div>
+    
+        <div class="input-group">
+          <label for="name">Votre nom de famille</label>
+          <input type="text" id="name" name="name">
+        </div>
+    
+        <div class="input-group">
+          <label for="category">Catégorie culinaire préférée</label>
+          <select name="category" id="category">
+            <option value="cold-starter">Entrée froide</option>
+            <option value="soup">Soupe</option>
+            <option value="main-course">Plat</option>
+            <option value="fruit-dessert">Dessert (fruits)</option>
+            <option value="chocolate-dessert">Dessert (chocolat)</option>
+          </select>
+        </div>
+    
+        <div class="input-group">
+          <input type="checkbox" id="newsletter" name="newsletter">
+          <label for="newsletter">J'accepte de recevoir la newsletter</label>
+        </div>
+    
+        <div class="input-action">
+          <button type="submit">Je m'inscris</button>
+        </div>
+      </form>
+
+    <script>
+        const el= document.getElementById('register-form');
+        el.addEventListener('submit', (event) => {
+           event.preventDefault();
+
+           let civility = event.target.female.checked ? 'female' : 'male';
+           let name = event.target.name.value;
+           let category = event.target.category.value;
+           let newsletter = event.target.newsletter.checked;
+
+
+           let displayCivility = civility === 'female' ? 'Mm' : 'M';
+           
+           let newSletterCheked;
+
+
+           if (newsletter) {
+               newSletterCheked = 'Inscrivez-vous vite à notre newsletter';
+           }
+           else {
+               newSletterCheked = 'Merci de vous être abonné à notre newsletter';
+           }
+
+           let bestCategory;
+
+           switch (category) {
+               case 'soup': 
+                   bestCategory = "Soupe for you! "
+                   break;
+
+                   case "cold-starter":
+                   bestCategory = "cold-starter for you! "             
+
+                   case 'fruit-dessert':
+                   bestCategory = 'fruit-dessert for you! '
+                   break;
+           
+                   case 'chocolate-dessert':
+                   bestCategory = 'chocolate-dessert for you! '
+                   
+                   break;
+               default: 'cold-starter '
+                   break;
+           }
+
+
+
+
+           alert(`Bonjour ${displayCivility} ${name}. ${newSletterCheked} elle permettra de vous envoyer de délicieuses recettes de votre catégorie préférée,  ${bestCategory}!` )
+        });
+
+    </script>
+</body>
+</html>
